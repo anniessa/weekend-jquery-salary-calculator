@@ -9,10 +9,10 @@ function onReady() {
     console.log('READY!')
     
     $('#addEmployeeForm').on('submit', addEmployee);
-    $('#addEmployeeForm').on('submit', addMonthlyCost);
+    $('#addEmployeeForm').on('submit', calculateMonthlyCost);
 
     $(document).on('click', '.delete-employee', deleteEmployee);
-    $(document).on('click', '.delete-employee', addMonthlyCost);
+    $(document).on('click', '.delete-employee', calculateMonthlyCost);
     
 
     render();
@@ -23,10 +23,10 @@ function addEmployee(evt){
     evt.preventDefault();
     
     let newEmployee = {
-        firstName: $('#firstNameInput').val().toUpperCase(),
-        lastName: $('#lastNameInput').val().toUpperCase(),
+        firstName: $('#firstNameInput').val(),
+        lastName: $('#lastNameInput').val(),
         id: Number($('#idInput').val()),
-        title: $('#titleInput').val().toUpperCase(),
+        title: $('#titleInput').val(),
         annualSalary: Number($('#annualSalaryInput').val()),
     }
     
@@ -40,7 +40,7 @@ function addEmployee(evt){
     render();
 }
 
-function addMonthlyCost() {
+function calculateMonthlyCost() {
     totalMonthlyCosts = 0;
     for (let employee of employees) {
     totalMonthlyCosts += (employee.annualSalary / 12);
@@ -81,7 +81,7 @@ function render() {
 
     console.log(totalMonthlyCosts);
 
-    $('#totalMonthly').text(`Monthly Cost $ ${totalMonthlyCosts}`);
+    $('#totalMonthly').text(`Total Monthly Cost: $ ${totalMonthlyCosts}`);
 
     if (totalMonthlyCosts >= 20000) {
         $('#totalMonthly').addClass("red-background")

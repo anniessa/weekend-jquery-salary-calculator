@@ -1,3 +1,14 @@
+.body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+   background-color: grey;
+   color: white;
+   text-align: center;
+
+}
+
 table {
     border-collapse: collapse;
 }
@@ -5,8 +16,33 @@ table {
 th, td {
     border: 1px solid;
     border-color: black;
+    padding: 0.5rem;
     
   }
+
+.final-th {
+    border-collapse: collapse;
+}
+
+tbody tr:nth-child(odd) {
+    background: rgb(194, 194, 194);
+}
+
+th {
+    height: 50px;
+}
+ 
+td {
+    height: 50px;
+}
+ 
+table {
+    width: 50%;
+}
+
+#totalMonthly {
+    text-align: center;
+}
 
 .red-background {
     background-color: red;
