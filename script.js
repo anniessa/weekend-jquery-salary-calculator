@@ -8,7 +8,7 @@ function onReady() {
     console.log('READY!')
     
     $('#addEmployeeForm').on('submit', addEmployee);
-    $('#deleteEmployee').on('submit', deleteEmployee);
+    $(document).on('click', '.delete-employee', deleteEmployee);
 
     render();
 }
@@ -41,7 +41,7 @@ function deleteEmployee() {
     let myTr = $(this).parent().parent();
     let indexOfEmployee = myTr.index();
     console.log('indexOfEmployee', indexOfEmployee);
-    cats.splice(indexOfEmployee, 1); 
+    employees.splice(indexOfEmployee, 1); 
     render();
 }
 
@@ -58,12 +58,10 @@ function render() {
     <td>${employee.id}</td>
     <td>${employee.title}</td>
     <td>${employee.annualSalary}</td>
-    <button class="deleteEmployee">
-    Delete
-    </button>
+    <td>
+    <button class="delete-employee"> Delete </button>
+    </td>
     </tr>
-
-
     `)
     
 }
