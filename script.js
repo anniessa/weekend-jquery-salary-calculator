@@ -10,11 +10,14 @@ function onReady() {
     
     $('#addEmployeeForm').on('submit', addEmployee);
     $('#addEmployeeForm').on('submit', calculateMonthlyCost);
-
-    $(document).on('click', '.delete-employee', deleteEmployee);
-    $(document).on('click', '.delete-employee', calculateMonthlyCost);
     
+    $(document).on('click', '.delete-btn', deleteEmployee);
+    $(document).on('click', '.delete-btn', calculateMonthlyCost);
 
+    $(document).on('click', '.edit-btn', editEmployee);
+    $(document).on('click', '.end-editing', editEmployee);
+    
+    
     render();
 }
 
@@ -43,7 +46,7 @@ function addEmployee(evt){
 function calculateMonthlyCost() {
     totalMonthlyCosts = 0;
     for (let employee of employees) {
-    totalMonthlyCosts += (employee.annualSalary / 12);
+        totalMonthlyCosts += (employee.annualSalary / 12);
     }
     console.log('in monthly costs', totalMonthlyCosts);
     render();
@@ -57,6 +60,18 @@ function deleteEmployee() {
     let indexOfEmployee = myTr.index();
     console.log('indexOfEmployee', indexOfEmployee);
     employees.splice(indexOfEmployee, 1); 
+    render();
+}
+
+function editEmployee() {
+    console.log('in edit employee button');
+
+    $(this).parent().parent().contentEditable = true;
+    render();
+}
+
+function endEdit() {
+    $(this).parent().parent().contentEditable = false;
     render();
 }
 
@@ -74,18 +89,25 @@ function render() {
     <td>${employee.title}</td>
     <td>${employee.annualSalary}</td>
     <td>
-    <button class="delete-employee"> Delete </button>
+    <button class="delete-btn">Delete</button>
+    <button class="edit-btn">Edit</button>
+    <button class="end-editing">Done Editing</button>
     </td>
     </tr>
     `)
-
+    
     console.log(totalMonthlyCosts);
-
+    
     $('#totalMonthly').text(`Total Monthly Cost: $ ${totalMonthlyCosts}`);
-
+    
     if (totalMonthlyCosts >= 20000) {
         $('#totalMonthly').addClass("red-background")
     } else {
         $('#totalMonthly').removeClass("red-background")
     }
+
+    $('.edit-btn').parent().parent().addClass("edit-field");
+    $('.end-editing').parent().parent().removeClass("edit-field");
+    
+
 }

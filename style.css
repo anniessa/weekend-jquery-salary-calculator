@@ -3,10 +3,10 @@
 }
 
 h1 {
-   background-color: grey;
-   color: white;
-   text-align: center;
-
+    background-color: grey;
+    color: white;
+    text-align: center;
+    
 }
 
 table {
@@ -18,7 +18,7 @@ th, td {
     border-color: black;
     padding: 0.5rem;
     
-  }
+}
 
 .final-th {
     border-collapse: collapse;
@@ -31,11 +31,11 @@ tbody tr:nth-child(odd) {
 th {
     height: 50px;
 }
- 
+
 td {
     height: 50px;
 }
- 
+
 table {
     width: 50%;
 }
@@ -44,7 +44,20 @@ table {
     text-align: center;
 }
 
+.center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border: 8px solid;
+      }
+
 .red-background {
     background-color: red;
 }
+
+.edit-field {
+    background-color: yellow;
+}
+
 
