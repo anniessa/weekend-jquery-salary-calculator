@@ -15,7 +15,7 @@ function onReady() {
     $(document).on('click', '.delete-btn', calculateMonthlyCost);
 
     $(document).on('click', '.edit-btn', editEmployee);
-    $(document).on('click', '.end-editing', editEmployee);
+    $(document).on('click', '.end-editing', endEdit);
     
     
     render();
@@ -65,13 +65,16 @@ function deleteEmployee() {
 
 function editEmployee() {
     console.log('in edit employee button');
-
-    $(this).parent().parent().contentEditable = true;
-    render();
+    $(this).contentEditable = true;
+    $(this).parent().parent().addClass("edit-field");
+    
+   render();    
 }
 
 function endEdit() {
-    $(this).parent().parent().contentEditable = false;
+    console.log('in done edit button');
+    $(this).contentEditable = false;
+    $(this).parent().parent().removeClass("edit-field");
     render();
 }
 
@@ -89,9 +92,9 @@ function render() {
     <td>${employee.title}</td>
     <td>${employee.annualSalary}</td>
     <td>
-    <button class="delete-btn">Delete</button>
     <button class="edit-btn">Edit</button>
     <button class="end-editing">Done Editing</button>
+    <button class="delete-btn">Delete</button>
     </td>
     </tr>
     `)
@@ -104,10 +107,6 @@ function render() {
         $('#totalMonthly').addClass("red-background")
     } else {
         $('#totalMonthly').removeClass("red-background")
-    }
-
-    $('.edit-btn').parent().parent().addClass("edit-field");
-    $('.end-editing').parent().parent().removeClass("edit-field");
-    
+    }    
 
 }
