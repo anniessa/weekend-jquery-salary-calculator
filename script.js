@@ -53,11 +53,15 @@ function calculateMonthlyCost() {
     render();
 }
 
+function formatAsMoney(number) {
+    Intl.NumberFormat('en-US', {style: "currency", currency: "USD"}).format(number);
+}
+
 
 function deleteEmployee() {
     console.log('in deleteEmployee');
     
-    let myTr = $(this).parent().parent();
+    let myTr = $(this).closest('tr');
     let indexOfEmployee = myTr.index();
     console.log('indexOfEmployee', indexOfEmployee);
     employees.splice(indexOfEmployee, 1); 
@@ -100,6 +104,7 @@ function render() {
     console.log(totalMonthlyCosts);
     
     $('#totalMonthly').text(`Total Monthly Cost: $ ${totalMonthlyCosts}`);
+}
     
     if (totalMonthlyCosts >= 20000) {
         $('#totalMonthly').addClass("red-background")
@@ -112,4 +117,5 @@ function render() {
     // } else {
     //     $("td ").removeClass("edit-field");
     // }
-}
+
+
